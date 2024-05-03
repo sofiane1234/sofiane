@@ -7,6 +7,8 @@ import com.ynov.sofiane.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class UserImplem implements UserService {
 
@@ -15,9 +17,20 @@ public class UserImplem implements UserService {
 
     @Override
     public void giveRoleToUser(User user, Role role) {
-        user.addRole(role);
+        user.giveRole(role);
         userRepo.save(user);
     }
+
+    @Override
+    public Optional<User> getUserByFullname(String fullname) {
+        return UserRepo.findByFullname(fullname);
+    }
+
+    @Override
+    public Optional<User> getUserByEmail(String email) {
+        return UserRepo.findByEmail();
+    }
+
     @Override
     public User createUser(User entity) {
         return userRepo.save(entity);

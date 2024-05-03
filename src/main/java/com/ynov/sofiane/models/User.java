@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +32,7 @@ public class User {
     @ManyToMany
     private List<Article> stock;
 
-    public void addRole(Role role) {
+    public void giveRole(Role role) {
         getRoles().add(role);
     }
 }
